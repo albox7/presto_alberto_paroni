@@ -1,0 +1,63 @@
+{{-- NAVBAR --}}
+<nav id="navbar" class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		
+		{{-- Logo --}}
+		<a class="navbar-brand" href="{{ route('homepage') }}">
+			<div class="logo-shadow logo-shadow-color"></div>
+			<div class="logo logo-gradient"></div>
+		</a>
+		
+		{{-- Toggle button --}}
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		{{-- Menu items --}}
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ms-auto">
+				
+				<li class="nav-item">
+					<a class="nav-link {{ request()->routeIs('homepage') ? 'active' : '' }}" {{ request()->routeIs('homepage') ? 'aria-current="page"' : '' }} href="{{ route('homepage') }}">Home</a>
+				</li>	
+				
+				@auth
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-person-fill"></i> Ciao {{ Auth::user()->name }}!
+						</a>
+
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li>
+								<a class="dropdown-item" href="{{ route('create.article') }}">Pubblica un articolo</a>
+							</li>
+							<li>
+								<form action="{{ route('logout') }}" method="POST">
+									@csrf
+									<button type="submit" class="dropdown-item">
+										Esci
+									</button>
+								</form>
+							</li>
+						</ul>
+
+					</li>
+					
+				@else
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-person-fill"></i>
+							Accedi o registrati
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
+							<li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
+						</ul>
+					</li>
+				@endauth
+
+			</ul>
+		</div>
+				
+	</div>
+</nav>
