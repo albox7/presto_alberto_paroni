@@ -19,15 +19,37 @@
 				
 				<li class="nav-item">
 					<a class="nav-link {{ request()->routeIs('homepage') ? 'active' : '' }}" {{ request()->routeIs('homepage') ? 'aria-current="page"' : '' }} href="{{ route('homepage') }}">Home</a>
-				</li>	
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link {{ request()->routeIs('article.index') ? 'active' : '' }}" {{ request()->routeIs('article.index') ? 'aria-current="page"' : '' }} href="{{ route('article.index') }}">Tutti gli articoli</a>
+				</li>
 				
+
+				{{-- Categorie --}}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						Articoli per categoria
+					</a>
+					<ul class="dropdown-menu">
+						@foreach ($categories as $category)
+							<li>
+								<a class="dropdown-item"
+									href="{{ route('byCategory', ['category' => $category]) }}">{{ $category->name }}</a>
+							</li>
+						@endforeach
+					</ul>
+				</li>
+				
+
+				{{-- Login e Registrazione --}}
 				@auth
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="bi bi-person-fill"></i> Ciao {{ Auth::user()->name }}!
 						</a>
-
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu">
 							<li>
 								<a class="dropdown-item" href="{{ route('create.article') }}">Pubblica un articolo</a>
 							</li>
@@ -40,9 +62,7 @@
 								</form>
 							</li>
 						</ul>
-
 					</li>
-					
 				@else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

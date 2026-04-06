@@ -1,16 +1,8 @@
 <x-layout>
-
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col">
-				<h1>Ultimi articoli inseriti</h1>
-			</div>			
-			<div class="col-auto mt-2">
-				@auth
-					<a class="btn btn-primary-accent" href="{{ route('create.article') }}">
-						Pubblica un articolo
-					</a>
-				@endauth
+		<div class="row height-custom">
+			<div class="col-12">
+				<h1>Tutti gli articoli</h1>
 			</div>
 		</div>
 		<div class="row height-custom align-items-stretch py-5 cards-row">
@@ -26,6 +18,10 @@
 				</div>
 			@endforelse
 		</div>
+		<div class="d-flex justify-content-center">
+			<div>
+				{{ $articles->links() }}
+			</div>
+		</div>
 	</div>
-
 </x-layout>
