@@ -6,7 +6,12 @@
 			</a>
 		</div>
 		<div class="col-auto">
-			<small>&copy; {{ date('Y') }} Presto.it S.r.l. - Tutti i diritti sono riservati</small>
+			<small>&copy; {{ date('Y') }} Presto.it S.r.l. &nbsp; &middot; &nbsp; Tutti i diritti sono riservati &nbsp; &middot; &nbsp;</small>
+			
+			<a href="{{ route('become.revisor') }}" class="accent">
+				Diventa revisore
+			</a>
+			
 		</div>
 	</div>
 </footer>

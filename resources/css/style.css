@@ -873,17 +873,25 @@ footer .logo-footer {
 .mb-space-xl {
 	margin-bottom: var(--space-xl);
 } 
-	
-.accent,
-.accent>i {
-	color: var(--accent-color);
-}
 */
 
 .color-note {
 	color: var(--note-color);
 }
 
+.accent,
+.accent>i {
+	color: var(--accent-color);
+}
+
+.bg-accent {
+	background-color: var(--accent-color);
+	color: var(--bg-white);
+}
+
+.badge.rounded-pill.bg-accent {
+	border: 1px solid var(--bg-white);
+}
 
 
 

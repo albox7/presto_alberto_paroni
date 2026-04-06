@@ -36,7 +36,6 @@
 				<hr class="mb-4">
 				
 				<p class="mb-4">
-					{{-- {{ $article->description }} --}}
 					{!! nl2br(e($article->description)) !!}
 				</p>
 				

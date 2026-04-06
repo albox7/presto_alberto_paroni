@@ -30,7 +30,7 @@
 				<p class="text-danger">{{ $message }}</p>
 			@enderror
 		</div>
-		<div class="mb-3">
+		<div>
 			<label for="category" class="form-label">Categoria</label>
 			<select id="category" wire:model.blur="category" class="form-control select @error('category') is-invalid @enderror">
 				<option value="" selected disabled></option>
@@ -43,7 +43,7 @@
 			@enderror
 		</div>
 		<div class="d-flex justify-content-center">
-			<button type="submit" class="btn btn-primary w-100 mt-3">Pubblica articolo</button>
+			<button type="submit" class="btn btn-primary-custom w-100">Pubblica articolo</button>
 		</div>
 	</form>
 </div>
