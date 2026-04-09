@@ -38,6 +38,7 @@
 	--link-text-color: #01988C;
 	--text-color: #202124;
 	--note-color: #808080;
+	--placeholder-color: #999;
 	--label-color: #808080;
 	--bg-navbar: rgba(255, 255, 255, .3);
 	--bg-page: white;
@@ -48,6 +49,7 @@
 	/* --- Border ----------------------------------------- */
 	--hr: 1px solid #E3E3E3;
 	--border-input: 1px solid #999;
+	--border-color-input: #999;
 
 
 	/* --- Radius ----------------------------------------- */
@@ -228,11 +230,7 @@ p {
 	display: flex;
 	justify-content: end;
 	z-index: 200;
-	/* gap: .6rem; */
-}
-
-.navbar .nav-item {
-	margin-left: .4rem;
+	gap: .4rem;
 }
 
 .navbar li a,
@@ -369,6 +367,62 @@ ul.navbar-nav i::before {
 
 .navbar .dropdown-toggle .bi {
 	line-height: 0;
+}
+
+
+
+/* --- Search ---------------------------- */
+
+.navbar form[role="search"] {
+	margin-left: 1rem !important;
+}
+
+.navbar form[role="search"] .form-control {
+	border-color: var(--border-color-input);
+	border-right-color: var(--primary-color);
+}
+
+.navbar form[role="search"] button {
+	border-color: var(--primary-color);
+}
+
+.navbar form[role="search"] .form-control:focus {
+	border-color: var(--primary-color);
+	box-shadow: var(--input-transition-focus);
+	outline: none;
+}
+
+
+
+
+/* --- Placeholder ---------------------------- */
+
+::placeholder {
+	color: var(--placeholder-color) !important;
+	font-style: italic;
+	font-weight: 100 !important;
+}
+
+
+
+
+/* --- Paginazione ---------------------------- */
+
+.pagination .page-item.active .page-link {
+	color: var(--bg-white);
+	background-color: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+.pagination .page-item .page-link {
+	color: var(--accent-color);
+	border-color: #CCC;
+}
+
+.pagination .page-item .page-link:hover {
+	color: var(--bg-white);
+	background-color: var(--accent-color);
+	border-color: var(--accent-color);
 }
 
 

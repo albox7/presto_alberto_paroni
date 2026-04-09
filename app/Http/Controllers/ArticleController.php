@@ -12,6 +12,14 @@ use App\Models\Category;
 class ArticleController extends Controller implements HasMiddleware
 {
 
+	public function searchArticles(Request $request)
+	{
+		$query = $request->input('query');
+		$articles = Article::search($query)->where('is_accepted', true)->paginate(2);
+		$articles->appends(['query' => $query]);
+		return view('article.searched', ['articles' => $articles, 'query' => $query]);
+	}
+
 	public static function middleware() : array {
 		return [new Middleware('auth', only: ['create'])];
 	}
@@ -33,4 +41,5 @@ class ArticleController extends Controller implements HasMiddleware
 		$articles = $category->articles->where('is_accepted', true);
 		return view('article.byCategory', compact('articles', 'category'));
 	}
+	
 }
