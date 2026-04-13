@@ -50,14 +50,24 @@ class CreateArticleForm extends Component
 	// Messaggi custom
 	public function messages() {
 		
+		// return [
+		// 	'title.required'      => 'Il titolo è obbligatorio',
+		// 	'title.min'           => 'Il titolo deve essere composto da almeno 5 caratteri',
+		// 	'description.required' => 'La descrizione è obbligatoria',
+		// 	'description.min'     => 'La descrizione deve essere composta da almeno 10 caratteri',
+		// 	'price.required'      => 'Indicare un prezzo',
+		// 	'price.numeric'       => 'Il prezzo deve essere un numero',
+		// 	'category.required'   => 'Seleziona una categoria',
+		// ];
+
 		return [
-			'title.required'      => 'Il titolo è obbligatorio',
-			'title.min'           => 'Il titolo deve essere composto da almeno 5 caratteri',
-			'description.required' => 'La descrizione è obbligatoria',
-			'description.min'     => 'La descrizione deve essere composta da almeno 10 caratteri',
-			'price.required'      => 'Indicare un prezzo',
-			'price.numeric'       => 'Il prezzo deve essere un numero',
-			'category.required'   => 'Seleziona una categoria',
+			'title.required' => __('ui.titleRequired'),
+			'title.min' => __('ui.titleMin'),
+			'description.required' => __('ui.descriptionRequired'),
+			'description.min' => __('ui.descriptionMin'),
+			'price.required' => __('ui.priceRequired'),
+			'price.numeric' => __('ui.priceNumeric'),
+			'category.required' => __('ui.categoryRequired'),
 		];
 	}
 

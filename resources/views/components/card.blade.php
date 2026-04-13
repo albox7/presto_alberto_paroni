@@ -17,7 +17,7 @@
 	
 	<div class="card-footer">
 		<a href="{{ route('byCategory', ['category' => $article->category]) }}">
-			{{ $article->category->name }}
+			{{ __("ui.{$article->category->name}") }}
 		</a>
 	</div>
 </div>

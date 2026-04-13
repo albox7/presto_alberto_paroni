@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-12">
 				<h1>
-					Hai cercato "<span>{{ $query }}"</span>
+					{{ __('ui.searchResultTitle') }} "<span>{{ $query }}"</span>
 				</h1>
 			</div>
 		</div>
@@ -15,7 +15,7 @@
 			@empty
 				<div class="col-auto">
 					<h3>
-						Nessun articolo corrisponde alla tua ricerca ...
+						{{ __('ui.noSearchResult') }}
 					</h3>
 				</div>
 			@endforelse

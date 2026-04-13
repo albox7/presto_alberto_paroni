@@ -22,7 +22,7 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link {{ request()->routeIs('article.index') ? 'active' : '' }}" {{ request()->routeIs('article.index') ? 'aria-current="page"' : '' }} href="{{ route('article.index') }}">Tutti gli articoli</a>
+					<a class="nav-link {{ request()->routeIs('article.index') ? 'active' : '' }}" {{ request()->routeIs('article.index') ? 'aria-current="page"' : '' }} href="{{ route('article.index') }}">{{ __('ui.navArticles') }}</a>
 				</li>
 				
 
@@ -30,13 +30,14 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false">
-						Articoli per categoria
+						{{ __('ui.navCategories') }}
 					</a>
 					<ul class="dropdown-menu">
 						@foreach ($categories as $category)
 							<li>
-								<a class="dropdown-item"
-									href="{{ route('byCategory', ['category' => $category]) }}">{{ $category->name }}</a>
+								<a class="dropdown-item" href="{{ route('byCategory', ['category' => $category]) }}">
+									{{ __("ui.{$category->name}") }}
+								</a>
 							</li>
 						@endforeach
 					</ul>
@@ -47,17 +48,19 @@
 				@auth
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="bi bi-person-fill"></i> Ciao {{ Auth::user()->name }}!
+							<i class="bi bi-person-fill"></i> {{ __('ui.hello') }} {{ Auth::user()->name }}!
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item" href="{{ route('create.article') }}">Pubblica un articolo</a>
+								<a class="dropdown-item" href="{{ route('create.article') }}">
+									{{ __('ui.publicArticle') }}
+								</a>
 							</li>
 							<li>
 								<form action="{{ route('logout') }}" method="POST">
 									@csrf
 									<button type="submit" class="dropdown-item">
-										Esci
+										{{ __('ui.navExit') }}
 									</button>
 								</form>
 							</li>
@@ -67,11 +70,19 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="bi bi-person-fill"></i>
-							Accedi o registrati
+							{{ __('ui.navEnter') }}
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
-							<li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
+							<li>
+								<a class="dropdown-item" href="{{ route('login') }}">
+									{{ __('ui.login') }}
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ route('register') }}">
+									{{ __('ui.registration') }}
+								</a>
+							</li>
 						</ul>
 					</li>
 				@endauth
@@ -81,7 +92,7 @@
 					@if (Auth::user()->is_revisor)
 						<li class="nav-item">
 							<a class="nav-link btn btn-outline-success btn-sm position-relative w-sm-25" href="{{ route('revisor.index') }}">
-								Area revisore
+								{{ __('ui.revArea') }}
 								<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-accent">
 									{{ \App\Models\Article::toBeRevisedCount() }}
 								</span>
@@ -93,14 +104,21 @@
 			</ul>
 
 			{{-- Search --}}
-			<form class="d-flex ms-auto" role="search" action="{{ route('article.search') }}" method="GET">
+			<form class="d-flex ms-auto search" role="search" action="{{ route('article.search') }}" method="GET">
 				<div class="input-group">
-				<input type="search" name="query" class="form-control" placeholder="Scrivi ..." aria-label="search">
+				<input type="search" name="query" class="form-control" placeholder="{{ __('ui.navSearchPlaceholder') }}" aria-label="search">
 					<button type="submit" class="input-group-text" id="basic-addon2">
-						Cerca
+						{{ __('ui.navSearchBtn') }}
 					</button>
 				</div>
 			</form>
+
+			{{-- Languages --}}
+			<div class="ms-lg-3 ms-0 d-flex">
+				<x-_locale lang="it" />
+				<x-_locale lang="gb" />
+				<x-_locale lang="es" />
+			</div>
 
 		</div>	
 	</div>

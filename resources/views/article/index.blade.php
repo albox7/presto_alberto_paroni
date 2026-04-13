@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row height-custom">
 			<div class="col-12">
-				<h1>Tutti gli articoli</h1>
+				<h1>{{ __('ui.allArticles') }}</h1>
 			</div>
 		</div>
 		<div class="row height-custom align-items-stretch py-5 cards-row">
@@ -13,7 +13,7 @@
 			@empty
 				<div class="col-12">
 					<h3>
-						Non sono ancora stati creati articoli
+						{{ __('ui.voidArticles') }}
 					</h3>
 				</div>
 			@endforelse

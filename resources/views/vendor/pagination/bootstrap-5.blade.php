@@ -28,9 +28,9 @@
 
 		<div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
 			<div class="small text-muted me-3">
-				Risultati da <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
-				a <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
-				di <span class="fw-semibold">{{ $paginator->total() }}</span> totali
+				{{ __('ui.pagination_01' )}} <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
+				{{ __('ui.pagination_02' )}} <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
+				{{ __('ui.pagination_03' )}} <span class="fw-semibold">{{ $paginator->total() }}</span> {{ __('ui.pagination_04' )}}
 			</div>
 
 			<div>

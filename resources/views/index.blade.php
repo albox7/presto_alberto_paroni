@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
-				<h1>Ultimi articoli inseriti</h1>
+				<h1>{{ __('ui.latestArticles') }}</h1>
 
 				
 				{{-- Messaggi di errore --}}
@@ -26,7 +26,7 @@
 			<div class="col-auto mt-2">
 				@auth
 					<a class="btn btn-primary-accent" href="{{ route('create.article') }}">
-						Pubblica un articolo
+						{{ __('ui.publicArticle') }}
 					</a>
 				@endauth
 			</div>
@@ -41,7 +41,7 @@
 			@empty
 				<div class="col-auto">
 					<h3>
-						Non sono ancora stati creati articoli...
+						{{ __('ui.voidArticles') }}
 					</h3>
 				</div>
 			@endforelse

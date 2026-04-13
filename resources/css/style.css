@@ -247,10 +247,6 @@ p {
 	font-weight: 400;
 }
 
-/* .navbar .dropdown-menu {
-	min-width: max-content;
-} */
-
 .navbar li a:hover,
 .navbar button:hover {
 	background: var(--bg-dark);
@@ -371,6 +367,7 @@ ul.navbar-nav i::before {
 
 
 
+
 /* --- Search ---------------------------- */
 
 .navbar form[role="search"] {
@@ -386,12 +383,19 @@ ul.navbar-nav i::before {
 	border-color: var(--primary-color);
 }
 
+.navbar form[role="search"] button:hover {
+	border-color: var(--bg-dark);
+}
+
 .navbar form[role="search"] .form-control:focus {
 	border-color: var(--primary-color);
 	box-shadow: var(--input-transition-focus);
 	outline: none;
 }
 
+.navbar form[role="search"].search {
+	margin-left: 0;
+}
 
 
 
@@ -406,7 +410,7 @@ ul.navbar-nav i::before {
 
 
 
-/* --- Paginazione ---------------------------- */
+/* --- Pagination ---------------------------- */
 
 .pagination .page-item.active .page-link {
 	color: var(--bg-white);
@@ -666,6 +670,27 @@ p.text-danger {
 
 
 
+/* --- Languages ---------------------------- */
+
+.btn-flag:hover,
+.btn-flag:focus,
+.btn-flag:active {
+	box-shadow: none !important;
+	filter: none !important;
+	background-color: transparent !important;
+	opacity: .75;
+}
+
+button.btn-flag {
+	padding: 0 .4rem !important;
+	border: 0 none;
+	background-color: transparent;
+}
+
+
+
+
+
 /* --- Footer --------------------------------------- */
 
 footer {
@@ -702,19 +727,14 @@ footer .logo-footer {
 
 /* --- Utilities ------------------------------------ */
 
-/* .strong {
-	font-weight: 600;
-}
-
 .upper {
 	text-transform: uppercase;
 	font-weight: 300;
 }
 
-.custom-sticky {
-	top: 8.25rem;
+.strong {
+	font-weight: 600;
 }
-*/
 
 .color-note {
 	color: var(--note-color);
@@ -740,6 +760,19 @@ footer .logo-footer {
 /* --- Media queries -------------------------------- */
 
 @media (max-width: 768px) {
+
+	.navbar {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		border-bottom: var(--hr);
+		background-color: var(--bg-white);
+		padding-bottom: 2rem;
+	}
+
+	.navbar form[role="search"].search {
+		margin-left: 0 !important;
+		margin-bottom: 1rem;
+	}
 
 	ul.dropdown-menu.show {
 		top: 0;

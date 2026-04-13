@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col">
 				<h1>
-					{{ $category->name }}
+					{{ __("ui.{$category->name}") }}
 				</h1>
 			</div>
 		</div>
@@ -15,11 +15,11 @@
 			@empty
 				<div class="col-auto">
 					<h3>
-						Non ci sono articoli in questa categoria...
+						{{ __('ui.voidCat') }}
 					</h3>
 					@auth
 						<a class="btn btn-primary-accent my-5" href="{{ route('create.article') }}">
-							Pubblica un articolo
+							{{ __('ui.publicArticle') }}
 						</a>
 					@endauth
 				</div>

@@ -6,10 +6,10 @@
 			</a>
 		</div>
 		<div class="col-auto">
-			<small>&copy; {{ date('Y') }} Presto.it S.r.l. &nbsp; &middot; &nbsp; Tutti i diritti sono riservati &nbsp; &middot; &nbsp;</small>
+			<small>&copy; {{ date('Y') }} Presto.it S.r.l. &nbsp; &middot; &nbsp; {{ __('ui.footerCopyrigth') }} &nbsp; &middot; &nbsp;</small>
 			
 			<a href="{{ route('become.revisor') }}" class="accent">
-				Diventa revisore
+				{{ __('ui.footerRevisor') }}
 			</a>
 			
 		</div>
