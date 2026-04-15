@@ -49,6 +49,7 @@ return [
 	'priceNumeric' => 'The price must be a number',
 	'categoryRequired' => 'Select a category',
 	'articleTitle' => 'Title',
+	'articleImage' => 'Image',
 	'articleDescription' => 'Description',
 	'articlePrice' => 'Price €',
 	'articlePrice2' => 'Price',
@@ -61,4 +62,5 @@ return [
 	'articleMessage' => 'Messagge',
 	'articleNone' => 'No items to review ...',
 	'backToHome' => 'Return to the homepage',
+	'maxImages' => 'You can upload a maximum of 6 images',
 ];

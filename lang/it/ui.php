@@ -49,6 +49,7 @@ return [
 	'priceNumeric' => 'Il prezzo deve essere un numero',
 	'categoryRequired' => 'Seleziona una categoria',
 	'articleTitle' => 'Titolo',
+	'articleImage' => 'Immagine',
 	'articleDescription' => 'Descrizione',
 	'articlePrice' => 'Prezzo €',
 	'articlePrice2' => 'Prezzo',
@@ -60,4 +61,5 @@ return [
 	'articleMessage' => 'Messaggio',
 	'articleNone' => 'Nessun articolo da revisionare ...',
 	'backToHome' => 'Torna alla homepage',
+	'maxImages' => 'Puoi caricare al massimo 6 immagini',
 ];

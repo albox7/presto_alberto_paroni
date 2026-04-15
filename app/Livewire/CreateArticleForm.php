@@ -6,10 +6,16 @@ use Livewire\Component;
 use App\Models\Article;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 
 class CreateArticleForm extends Component
 {
+	use WithFileUploads;
+
+	// Costante per numero massimo di immagini per articolo
+	const MAX_IMAGES = 6;
+
 	#[Validate('required|min:5')]
 	public $title;
 	#[Validate('required|min:10')]
@@ -19,6 +25,9 @@ class CreateArticleForm extends Component
 	#[Validate('required')]
 	public $category = '';
 	public $article;
+
+	public $images = [];
+	public $temporary_images;
 
 
 	public function store() {
@@ -32,6 +41,13 @@ class CreateArticleForm extends Component
 			'category_id' => $this->category,
 			'user_id'     => Auth::id()
 		]);
+
+		// Se c'è almeno una immagine la salva nel path
+		if (count($this->images) > 0) {
+			foreach ($this->images as $image) {
+				$this->article->images()->create(['path' => $image->store('images', 'public')]);
+			}
+		}
 
 		// Rimuovoe tutti i valori inseriti nel form
 		$this->reset();
@@ -50,16 +66,6 @@ class CreateArticleForm extends Component
 	// Messaggi custom
 	public function messages() {
 		
-		// return [
-		// 	'title.required'      => 'Il titolo è obbligatorio',
-		// 	'title.min'           => 'Il titolo deve essere composto da almeno 5 caratteri',
-		// 	'description.required' => 'La descrizione è obbligatoria',
-		// 	'description.min'     => 'La descrizione deve essere composta da almeno 10 caratteri',
-		// 	'price.required'      => 'Indicare un prezzo',
-		// 	'price.numeric'       => 'Il prezzo deve essere un numero',
-		// 	'category.required'   => 'Seleziona una categoria',
-		// ];
-
 		return [
 			'title.required' => __('ui.titleRequired'),
 			'title.min' => __('ui.titleMin'),
@@ -68,10 +74,40 @@ class CreateArticleForm extends Component
 			'price.required' => __('ui.priceRequired'),
 			'price.numeric' => __('ui.priceNumeric'),
 			'category.required' => __('ui.categoryRequired'),
+			'temporary_images' => __('ui.maxImages'),
 		];
 	}
 
-    public function render()
+	// Gestione delle immagini: peso e numero (max 6 per articolo)
+	public function updatedTemporaryImages()
+	{
+
+		// Valida solo le immagini senza resettare 
+		// gli errori degli altri campi
+		$this->validateOnly('temporary_images.*', [
+			'temporary_images.*' => 'image|max:1024',
+		]);
+		$this->validateOnly('temporary_images', [
+			'temporary_images' => 'max:' . self::MAX_IMAGES
+		]);
+
+		foreach ($this->temporary_images as $image) {
+			if (count($this->images) < self::MAX_IMAGES) {
+				$this->images[] = $image;
+			}
+		}
+	}
+
+	// Cancella le immagini SIA nell'array CHE IN storage/livewire-tmp/
+	public function removeImage($index) {
+		if (in_array($index, array_keys($this->images))) {
+			$this->images[$index]->delete();
+			unset($this->images[$index]);
+		}
+	}
+
+
+	public function render()
     {
         return view('livewire.create-article-form');
     }

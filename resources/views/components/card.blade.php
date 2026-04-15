@@ -1,7 +1,8 @@
 <div class="card h-100">
 	
 	<div class="card-img-wrapper">
-		<img class="img-fluid" src="https://picsum.photos/200" alt="Immagine dell'articolo {{ $article->title }}">
+		<img src="{{ $article->images->isNotEmpty() ? Storage::url($article->images->first()->path) : 'https://picsum.photos/200' }}" class="img-fluid" alt="Immagine dell'articolo {{ $article->title }}">
+
 		<div class="article-price">
 			<h6>{{ $article->price }} €</h6>
 		</div>

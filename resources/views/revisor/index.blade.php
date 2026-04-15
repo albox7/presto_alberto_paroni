@@ -20,14 +20,21 @@
 			<div class="row pt-5 gap-3">
 				<div class="col-mx-auto col-md-5 col-lg-5 mt-3">
 					<div class="row">
-						@for ($i = 0; $i < 6; $i++)
-							<div class="col-6 col-md-4 mb-4 text-center">
-								<img src="https://picsum.photos/300" class="img-fluid rounded" alt="immagine segnaposto">
-							</div>
-						@endfor
+						@if ($article_to_check->images->count())
+							@foreach ($article_to_check->images as $key => $image)
+								<div class="col-6 col-md-4 mb-4 text-center">
+									<img src="{{ Storage::url($image->path) }}" class="img-fluid rounded" alt="Immagine {{$key +1 }} dell'articolo '{{$article_to_check->title}}">
+								</div>
+							@endforeach
+						@else
+							@for ($i = 0; $i < 6; $i++)
+								<div class="col-6 col-md-4 mb-4 text-center">
+									<img src="https://picsum.photos/300" alt="immagine segnaposto" class="img-fluid rounded">
+								</div>
+							@endfor
+						@endif
 					</div>
-				</div>
-				
+				</div>				
 				<div class="col-12 col-md-6 col-lg-6 d-flex flex-column justify-content-between">
 					<div>
 						<div class="form-label accent mt-3">

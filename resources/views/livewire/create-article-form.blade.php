@@ -16,6 +16,51 @@
 				<p class="text-danger">{{ $message }}</p>
 			@enderror
 		</div>
+
+
+		{{-- Immagini --}}
+		<div class="mb-3">
+			<label for="image" class="form-label">
+				{{ __('ui.articleImage') }}
+			</label>
+			
+			<input id="image" type="file" wire:model.live="temporary_images" multiple
+			class="form-control custom-input-file @error('temporary_images.*') is-invalid @enderror {{ count($images) >= \App\Livewire\CreateArticleForm::MAX_IMAGES ? 'disabled' : '' }}"
+			placeholder="Img/"
+			{{ count($images) >= \App\Livewire\CreateArticleForm::MAX_IMAGES ? 'disabled' : '' }}>
+
+			{{-- Errore MAX_IMAGES --}}
+			@if (count($images) >= \App\Livewire\CreateArticleForm::MAX_IMAGES)
+				<p class="fst-italic text-danger">{{ __('ui.maxImages') }}</p>
+			@endif
+
+			@error('temporary_images.*')
+				<p class="text-danger">{{ $message }}</p>
+			@enderror
+
+			@error('temporary_images')
+				<p class="text-danger">{{ $message }}</p>
+			@enderror
+
+		</div>
+		@if (!empty($images))
+			<div class="row">
+				<div class="col-12">
+					<label class="form-label">Preview immagini</label>
+					<div class="row wrapper-img-preview">
+						@foreach ($images as $index => $image)
+							<div class="col-auto img-preview-wrapper">
+								<div class="img-preview custom-input" style="background-image: url({{ $image->temporaryUrl() }});"></div>
+								<button type="button" class="btn btn-delete-thumbnail" wire:click="removeImage({{ $index }})"></button>
+							</div>
+						@endforeach
+					</div>
+				</div>
+			</div>
+		@endif
+		{{-- END Immagini --}}
+
+
 		<div class="mb-3">
 			<label for="description" class="form-label">
 				{{ __('ui.articleDescription') }}
