@@ -6,11 +6,18 @@
 				@if ($article->images->count() > 0)
 					<div id="carouselExample" class="carousel slide mt-3">
 						<div class="carousel-inner">
-							@foreach ($article->images as $key => $image)
+							{{-- @foreach ($article->images as $key => $image)
 								<div class="carousel-item @if ($loop->first) active @endif">
 									<img src="{{ Storage::url($image->path) }}" alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}">
 								</div>
+							@endforeach --}}
+							
+							@foreach ($article->images as $key => $image)
+								<div class="carousel-item @if ($loop->first) active @endif">
+									<img src="{{ $image->getUrl(600, 600) }}" class="d-block w-100 rounded" alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}">
+								</div>
 							@endforeach
+							
 						</div>
 						@if ($article->images->count() > 1)
 							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
