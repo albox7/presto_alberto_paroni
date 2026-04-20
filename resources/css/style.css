@@ -68,8 +68,6 @@
 }
 
 
-
-
 /* --- Valori di base ------------------------------------- */
 
 * {
@@ -851,6 +849,33 @@ footer .logo-footer {
 
 
 
+
+/* --- Revisor ------------------------------------ */
+
+.row .revisor {	
+	border-right: var(--hr);
+}
+
+.row .revisor .row-child > .card {
+	border-bottom: var(--hr);
+	border-radius: 0 !important;
+	padding-top: var(--space-m);
+	padding-bottom: var(--space-m);
+}
+
+ul.revisor {
+	list-style: none;
+	border: 0 none !important;
+}
+
+ul.revisor li {
+	font-family: var(--font-family) !important;
+}
+
+
+
+
+
 /* --- Utilities ------------------------------------ */
 
 .upper {
@@ -860,6 +885,10 @@ footer .logo-footer {
 
 .strong {
 	font-weight: 600;
+}
+
+.no-border {
+	border: 0 none !important;
 }
 
 .color-note {
@@ -886,6 +915,16 @@ footer .logo-footer {
 /* --- Media queries -------------------------------- */
 
 @media (max-width: 768px) {
+
+	ul.revisor li {
+		display: inline-block;
+		margin-right: .4rem;
+		margin-bottom: .25rem;	
+	}
+
+	.row .revisor h5 {
+		margin-top: 1rem;
+	}
 
 	.navbar {
 		backdrop-filter: none;

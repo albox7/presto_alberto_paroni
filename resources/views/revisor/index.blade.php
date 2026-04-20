@@ -21,17 +21,61 @@
 				<div class="col-mx-auto col-md-5 col-lg-5 mt-3">
 					<div class="row">
 						@if ($article_to_check->images->count())
-							{{-- @foreach ($article_to_check->images as $key => $image)
-								<div class="col-6 col-md-4 mb-4 text-center">
-									<img src="{{ Storage::url($image->path) }}" class="img-fluid rounded" alt="Immagine {{$key +1 }} dell'articolo '{{$article_to_check->title}}">
-								</div>
-							@endforeach --}}
+							
+							{{-- Controllo immagini Google Vision --}}
+
 							@foreach ($article_to_check->images as $key => $image)
-								<div class="col-6 col-md-4 mb-4 text-center">
-									<img src="{{ $image->getUrl(600, 600) }}" class="img-fluid rounded"
-										alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+								<div class="row revisor">
+									<div class="col-12">
+										<div class="row row-child">
+											<div class="card">
+												<div class="row">
+													
+													{{-- Immagine --}}
+													<div class="col-12 col-md-4 col-lg-4">
+														<img src="{{ $image->getUrl(600, 600) }}" class="img-fluid rounded" alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+													</div>
+													
+													{{-- Labels --}}
+													<div class="col-12 col-md-4 col-lg-5">
+														<div class="card-body no-border">
+															<h5 class="strong">Labels</h5>
+															@if ($image->labels)
+																@foreach ($image->labels as $label)
+																	#{{ $label }},
+																@endforeach
+															@else
+																<p>No labels</p>
+															@endif
+														</div>
+													</div>
+
+													{{-- Ratings --}}
+													<div class="col-12 col-md-4 col-lg-3">
+														<div class="card-body no-border">
+															<h5 class="strong">Ratings</h5>
+															<div class="row">
+																<ul class="revisor">
+																	<li class="{{ $image->adult }}"> Adult</li>
+																	<li class="{{ $image->violence }}"> Violence</li>
+																	<li class="{{ $image->spoof }}"> Spoof</li>
+																	<li class="{{ $image->racy }}"> Racy</li>
+																	<li class="{{ $image->medical }}"> Medical</li>
+																</ul>
+															</div>															
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							@endforeach
+							
+							{{-- END Controllo immagini Google Vision --}}
+
+
 						@else
 							@for ($i = 0; $i < 6; $i++)
 								<div class="col-6 col-md-4 mb-4 text-center">

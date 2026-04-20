@@ -34,10 +34,13 @@ class Image extends Model
 		return self::getUrlByFilePath($this->path, $w, $h);
 	}
 
-
 	public function article() : BelongsTo {
-
 		return $this->belongsTo(Article::class);
+	}
 
+	protected function casts() : array {
+		return [
+			'labels' => 'array',
+		];
 	}
 }
