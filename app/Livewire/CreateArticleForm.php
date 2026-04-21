@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Jobs\GoogleVisionLabelImage;
 use App\Jobs\GoogleVisionSafeSearch;
 use App\Jobs\ResizeImage;
+use App\Jobs\RemoveFaces;
 use Livewire\Component;
 use App\Models\Article;
 use Livewire\Attributes\Validate;
@@ -48,15 +49,15 @@ class CreateArticleForm extends Component
 
 		// Se c'è almeno una immagine la salva nel path
 		if (count($this->images) > 0) {
-			
 			foreach ($this->images as $image) {
 				$newFileName = "articles/{$this->article->id}";
 				$newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
-				dispatch(new ResizeImage($newImage->path, 600, 600));
-				dispatch(new GoogleVisionSafeSearch($newImage->id));
-				dispatch(new GoogleVisionLabelImage($newImage->id));
+				RemoveFaces::withChain([
+					new ResizeImage($newImage->path, 600, 600),
+					new GoogleVisionSafeSearch($newImage->id),
+					new GoogleVisionLabelImage($newImage->id)
+				])->dispatch($newImage->id);
 			}
-
 			File::deleteDirectory(storage_path('/app/livewire-tmp'));
 		}
 
