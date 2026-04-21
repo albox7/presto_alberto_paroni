@@ -7,6 +7,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\CropPosition;
 use Spatie\Image\Image;
+use Spatie\Image\Enums\Unit;
 
 
 class ResizeImage implements ShouldQueue
@@ -30,13 +31,18 @@ class ResizeImage implements ShouldQueue
 		$srcPath = storage_path() . '/app/public/' . $this->path . '/' . $this->fileName;
 		$destPath = storage_path() . '/app/public/' . $this->path . "/crop_{$w}x{$h}_" . $this->fileName;
 
-
-		// Ridimensiona mantenendo le proporzioni 
-		// e poi croppa al centro
 		Image::load($srcPath)
-				->fit(Fit::Contain, $w, $h)
-				->crop($w, $h, CropPosition::Center)
-				->save($destPath);
-
+			->fit(Fit::Contain, $w, $h)
+			->crop($w, $h, CropPosition::Center)
+			->watermark(
+				base_path('resources/img/watermark.png'),
+				width: 90,
+				height: 40,
+				paddingX: 8,
+				paddingY: 8,
+				paddingUnit: Unit::Percent
+			)
+			->save($destPath);
 	}
+
 }
