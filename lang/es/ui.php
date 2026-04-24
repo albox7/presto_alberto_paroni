@@ -14,6 +14,7 @@ return [
 	'Motori' => 'Motores',
 	'Salute e Bellezza' => 'Salud y Belleza',
 	'Sport' => 'Deporte',
+	'Musica' => 'Musica',
 	'publicArticle' => 'Publicar un artículo',
 	'voidArticles' => 'Aún no se ha creado ningún artículo ...',
 	'voidCat' => 'No hay artículos en esta categoría ...',
@@ -62,4 +63,6 @@ return [
 	'articleNone' => 'No hay artículos para reseñar ...',
 	'backToHome' => 'Regresar a la página principal',
 	'maxImages' => 'Puedes subir un máximo de 6 imágenes',
+	'manageArticleTitle' => 'Gestión de artículos publicados',
+	'manageArticleText' => 'Es posible eliminar los artículos ya revisados ​si se publicaron por error',
 ];

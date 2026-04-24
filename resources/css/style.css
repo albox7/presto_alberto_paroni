@@ -469,7 +469,32 @@ p.text-danger {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-	filter: invert(50%);
+	position: relative;
+	background-color: var(--bg-dark);
+	border-radius: var(--border-radius-circle);
+	border: 8px solid var(--bg-dark) !important;
+	box-shadow: 0 .4rem 1rem rgba(0,0,0,.2);
+	outline: 1px solid rgba(255, 255, 255, .6);
+	transition: var(--base-transition);
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+	opacity: .8;
+	transform: scale(1.2);
+}
+
+.carousel-control-next-icon {
+	left: 14px;
+}
+
+.carousel-control-prev-icon {
+	right: 14px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	opacity: 1 !important;
 }
 
 .default-img {
@@ -648,6 +673,30 @@ p.text-danger {
 	border-color: var(--bg-dark);
 }
 
+.btn-neutral {
+	background-color: var(--bg-white);
+	border: 0 none;
+	box-shadow: 0 .4rem 1rem rgba(0, 0, 0,.1);
+}
+
+.btn-neutral:hover {
+	background-color: var(--bg-white);
+	border: 0 none;
+	box-shadow: none;
+}
+
+.btn-danger {
+	background-color: var(--bg-danger);
+	border: 0 none;
+	box-shadow: 0 .4rem 1rem rgba(0, 0, 0, .1);
+}
+
+.btn-danger:hover {
+	background-color: var(--bg-danger);
+	border: 0 none;
+	box-shadow: none;
+}
+
 
 
 
@@ -737,7 +786,6 @@ input[type="file"].custom-input-file:hover::file-selector-button {
 }
 
 input[type="file"].custom-input-file.disabled {
-	/* opacity: 0.5; */
 	cursor: not-allowed;
 	pointer-events: none;
 	border-color: var(--bg-danger);

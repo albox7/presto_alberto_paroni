@@ -69,11 +69,40 @@ class CreateArticleForm extends Component
 	}
 
 
-	// Converte la virgola nei decimali con il punto
-	public function updatedPrice() {
-		$this->price = str_replace(',', '.', $this->price);
+	
+	// Normalizza il valore del prezzo inserito dall’utente.
+	public function updatedPrice()
+	{
+		$value = $this->price;
+
+		// Se contiene sia punto che virgola(1.234,56) salvato nel DB 1234.56
+		if (str_contains($value, '.') && str_contains($value, ',')) {
+			$value = str_replace('.', '', $value);
+			$value = str_replace(',', '.', $value);
+		}
+		// Se contiene solo virgola 
+		elseif (str_contains($value, ',')) {
+			// Se ci sono 3 cifre dopo la virgola (12,000) salva nel DB: 12000
+			if (preg_match('/,\d{3}$/', $value)) {
+				$value = str_replace(',', '', $value);
+			} else {
+				$value = str_replace(',', '.', $value);
+			}
+		}
+		// Se contiene solo punto
+		elseif (str_contains($value, '.')) {
+			// Se ci sono 3 cifre dopo il punto (12.000) salva nel DB: 12000
+			if (preg_match('/\.\d{3}$/', $value)) {
+				$value = str_replace('.', '', $value);
+			}
+		}
+
+		$this->price = $value;
+
 		$this->validateOnly('price');
 	}
+
+
 	
 	// Messaggi custom
 	public function messages() {

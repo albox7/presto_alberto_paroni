@@ -29,3 +29,9 @@ Route::get('/revisor/request', [RevisorController::class, 'becomeRevisor'])->mid
 Route::get('/search/article', [ArticleController::class, 'searchArticles'])->name('article.search');
 
 Route::post('/lingua/{lang}', [PublicController::class, 'setLanguage'])->name('setLocale');
+
+
+
+// Gestione articoli backToReview e deleteArticle da parte del revisore
+Route::patch('/revisor/back-to-review/{article}', [RevisorController::class, 'backToReview'])->middleware('isRevisor')->name('revisor.backToReview');
+Route::delete('/revisor/delete-article/{article}', [RevisorController::class, 'deleteArticle'])->middleware('isRevisor')->name('revisor.deleteArticle');

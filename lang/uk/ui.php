@@ -12,6 +12,7 @@ return [
 	'Giocattoli' => 'Toys',
 	'Libri e Riviste' => 'Books & Magazines',
 	'Motori' => 'Motors',
+	'Musica' => 'Music',
 	'Salute e Bellezza' => 'Health & Beauty',
 	'Sport' => 'Sport',
 	'publicArticle' => 'Publish an article',
@@ -63,4 +64,6 @@ return [
 	'articleNone' => 'No items to review ...',
 	'backToHome' => 'Return to the homepage',
 	'maxImages' => 'You can upload a maximum of 6 images',
+	'manageArticleTitle' => 'Management of published articles',
+	'manageArticleText' => 'It is possible to delete already reviewed articles if they are published by mistake',
 ];

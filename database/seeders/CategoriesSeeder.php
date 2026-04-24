@@ -18,7 +18,8 @@ class CategoriesSeeder extends Seeder
 		'Animali domestici',
 		'Libri e Riviste',
 		'Accessori',
-		'Motori'
+		'Motori',
+		'Musica',
 	];
 
 	public function run(): void

@@ -10,13 +10,11 @@ class PublicController extends Controller
 {
     public function homepage() {
 
-		$articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->paginate(6);
+		$articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->paginate(12);
         return view('index', compact('articles'));
     }
 
 	public function setLanguage($lang) {
-
-		//dd($lang);
 
 		// Mapping necessario perché il codice bandiera 'gb' non corrisponde
 		// al codice cartella lingua 'uk' usato per le traduzioni:
@@ -25,8 +23,6 @@ class PublicController extends Controller
 			'gb' => 'uk',
 		];
 		$locale = $localeMap[$lang] ?? $lang;
-
-		//dd($locale);
 
 		session()->put('locale', $locale);
 		return redirect()->back();
